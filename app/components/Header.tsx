@@ -50,7 +50,7 @@ export function Header({ dict, lang }: Props) {
 
   const rightNav = [
     { label: dict.cv, href: `/${lang}#cv`, isCv: true },
-    { label: dict.shop, href: `/${lang}/shop`, isCv: false }
+    { label: dict.shop, href: "https://store.carlotasoto.com", isCv: false }
   ];
 
   useEffect(() => {
