@@ -49,8 +49,8 @@ export function Header({ dict, lang }: Props) {
   ];
 
   const rightNav = [
-    { label: dict.cv, href: `/${lang}#cv`, isCv: true },
-    { label: dict.shop, href: "https://store.carlotasoto.com", isCv: false }
+    { label: dict.cv, href: `/${lang}#cv`, isCv: true, isExternal: false },
+    { label: dict.shop, href: "https://store.carlotasoto.com", isCv: false, isExternal: true }
   ];
 
   useEffect(() => {
@@ -217,6 +217,8 @@ export function Header({ dict, lang }: Props) {
             <div className="nav-item" key={item.label}>
               <a
                 href={item.isCv ? undefined : item.href}
+                target={item.isExternal ? "_blank" : undefined}
+                rel={item.isExternal ? "noreferrer" : undefined}
                 onClick={item.isCv ? (e) => { e.preventDefault(); setCvPopupOpen(true); } : handleNavClick}
                 style={item.isCv ? { cursor: "pointer" } : undefined}
               >

@@ -8,8 +8,7 @@ const routes = [
   "/gallery/illustrations",
   "/gallery/digital-art",
   "/gallery/paintings",
-  "/gallery/sketches",
-  "/shop"
+  "/gallery/sketches"
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
