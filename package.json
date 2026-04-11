@@ -6,19 +6,19 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
     "lightgallery": "2.8.2",
-    "next": "^14.2.35",
+    "next": "^16.2.3",
     "react": "18.3.1",
     "react-dom": "18.3.1"
   },
   "devDependencies": {
     "@types/node": "25.3.2",
     "@types/react": "19.2.14",
-    "eslint": "8.57.0",
-    "eslint-config-next": "14.2.5",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "^16.2.3",
     "typescript": "5.4.5"
   }
 }

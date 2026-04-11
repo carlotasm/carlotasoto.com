@@ -5,13 +5,15 @@ import { HeroSection } from "@/app/sections/HeroSection";
 import { AboutSection } from "@/app/sections/AboutSection";
 import { CONTACT_EMAIL } from "@/app/lib/constants";
 
-type Props = { params: { lang: Lang } };
+type Props = { params: Promise<{ lang: string }> };
 
 export function generateStaticParams() {
   return langs.map((lang) => ({ lang }));
 }
 
-export async function generateMetadata({ params: { lang } }: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { lang: langParam } = await params;
+  const lang = langParam as Lang;
   const dict = getDictionary(lang);
   return {
     title: "Carlota Soto | Portfolio",
@@ -36,7 +38,9 @@ export async function generateMetadata({ params: { lang } }: Props): Promise<Met
   };
 }
 
-export default function Home({ params: { lang } }: Props) {
+export default async function Home({ params }: Props) {
+  const { lang: langParam } = await params;
+  const lang = langParam as Lang;
   const dict = getDictionary(lang);
 
   return (
@@ -47,8 +51,7 @@ export default function Home({ params: { lang } }: Props) {
         <section className="section contact" id="contact">
           <div className="contact-card">
             <div>
-              <p className="section-kicker">{dict.contact.kicker}</p>
-              <h3 className="section-title">{dict.contact.heading}</h3>
+              <h2 className="section-title">{dict.contact.heading}</h2>
               <p className="contact-copy">
                 {dict.contact.copy.replace("{email}", CONTACT_EMAIL)}
               </p>

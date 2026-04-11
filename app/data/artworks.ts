@@ -26,6 +26,24 @@ export const primaryWorks: Artwork[] = [
     slug: "quelque-chose-de-beau",
     medium: "Painting",
     image: "/artworks/paintings/quelque-chose-de-beau.png"
+  },
+  {
+    title: "Mère Nature",
+    slug: "mere-nature",
+    medium: "Painting",
+    image: "/artworks/paintings/mere-nature.jpg"
+  },
+  {
+    title: "Nous ne sommes rien qu'un produit",
+    slug: "nous-ne-sommes-rien-quun-produit",
+    medium: "Painting",
+    image: "/artworks/paintings/nous-ne-sommes-rien-quun-produit.jpg"
+  },
+  {
+    title: "Untitled #1",
+    slug: "untitled-1",
+    medium: "Painting",
+    image: "/artworks/paintings/untitled-1.jpg"
   }
 ];
 

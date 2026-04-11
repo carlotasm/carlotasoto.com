@@ -4,13 +4,15 @@ import type { Lang } from "@/app/lib/dictionaries";
 import { altWorks } from "@/app/data/artworks";
 import { LightboxGrid } from "@/app/components/LightboxGrid";
 
-type Props = { params: { lang: Lang } };
+type Props = { params: Promise<{ lang: string }> };
 
 export function generateStaticParams() {
   return langs.map((lang) => ({ lang }));
 }
 
-export async function generateMetadata({ params: { lang } }: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { lang: langParam } = await params;
+  const lang = langParam as Lang;
   const dict = getDictionary(lang);
   const { heading: title, kicker: description } = dict.gallery.illustrations;
   return {
@@ -28,7 +30,9 @@ export async function generateMetadata({ params: { lang } }: Props): Promise<Met
   };
 }
 
-export default function IllustrationsPage({ params: { lang } }: Props) {
+export default async function IllustrationsPage({ params }: Props) {
+  const { lang: langParam } = await params;
+  const lang = langParam as Lang;
   const dict = getDictionary(lang);
   const g = dict.gallery.illustrations;
 

@@ -88,6 +88,8 @@ main {
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.08em;
+  font-size: clamp(1.15rem, 1.3vw, 1.45rem);
+  line-height: 1.2;
   margin: 0;
 }
 
@@ -160,6 +162,17 @@ main {
 }
 
 .site-header[data-dropdown="open"]::after {
+  height: 320px;
+  opacity: 1;
+}
+
+/* Fallback for when the page is reloaded with the cursor already over the
+   gallery dropdown: `mouseenter` does not fire on mount, so React state stays
+   false and `data-dropdown` stays "closed". CSS `:hover`/`:focus-within` still
+   match immediately — use `:has()` to drive the backdrop from the DOM state
+   alone, so the overlay is always present when the dropdown is visible. */
+.site-header:has(.nav-item.has-dropdown:hover)::after,
+.site-header:has(.nav-item.has-dropdown:focus-within)::after {
   height: 320px;
   opacity: 1;
 }
@@ -437,23 +450,32 @@ main {
 
 .about-grid {
   display: grid;
-  grid-template-columns: 1.15fr 1fr;
+  grid-template-columns: 1fr 1.15fr;
   gap: clamp(1.5rem, 3vw, 2.5rem);
   padding: clamp(1rem, 2.4vw, 2rem);
+  align-items: center;
 }
 
 .about-visual {
   border-radius: 14px;
-  background-size: cover;
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center;
   min-height: 420px;
-  box-shadow: var(--shadow);
 }
 
 .about-text {
   display: grid;
-  gap: 0.45rem;
+  gap: 0.85rem;
   font-size: 1.05rem;
+}
+
+.about-text .section-title {
+  margin-bottom: 0;
+}
+
+.about-text .about-single {
+  margin-top: 0;
 }
 
 .about-title {
@@ -472,8 +494,9 @@ main {
 }
 
 .about-button {
+  justify-self: start;
   align-self: start;
-  margin-top: 0.35rem;
+  margin-top: 0.4rem;
 }
 
 
@@ -694,8 +717,11 @@ main {
 }
 
 .contact-copy {
-  margin: 0.3rem 0 0;
+  margin: 0.85rem 0 0;
   color: var(--muted);
+  line-height: 1.7;
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
 }
 
 .contact-actions {
@@ -787,21 +813,33 @@ main {
 /* Language switcher */
 
 .lang-switcher {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
   font-family: var(--font-sans), "Manrope", sans-serif;
   font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  padding: 0.2rem 0.55rem;
-  border-radius: 999px;
-  border: 1px solid currentColor;
-  opacity: 0.6;
-  transition: opacity 0.15s ease;
-  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  line-height: 1;
 }
 
-.lang-switcher:hover {
+.lang-switcher__active {
+  color: var(--ink);
+}
+
+.lang-switcher__sep {
+  opacity: 0.35;
+}
+
+.lang-switcher__link {
+  color: inherit;
+  opacity: 0.45;
+  text-decoration: none;
+  transition: opacity 0.15s ease;
+}
+
+.lang-switcher__link:hover {
   opacity: 1;
-  transform: none;
 }
 
 /* Utilities */
@@ -828,6 +866,10 @@ main {
 
   .about-grid {
     grid-template-columns: 1fr;
+  }
+
+  .about-grid .about-visual {
+    order: -1;
   }
 
   .narrative-grid {
@@ -990,15 +1032,26 @@ main {
   }
 
   .footer-inner {
-    font-size: clamp(0.78rem, 3.2vw, 0.9rem);
-    gap: clamp(0.3rem, 2vw, 0.55rem);
-    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    white-space: nowrap;
+    align-items: center;
+    column-gap: 0.75rem;
+    row-gap: 0.5rem;
+    width: 100%;
+    max-width: 100%;
+    white-space: normal;
+    font-size: clamp(0.78rem, 3.2vw, 0.9rem);
+    text-align: center;
   }
 
   .footer-inner > * {
-    flex-shrink: 1;
+    flex-shrink: 0;
+  }
+
+  .footer-inner a[href^="mailto:"] {
+    flex-basis: 100%;
+    text-align: center;
   }
 
   .footer-name {

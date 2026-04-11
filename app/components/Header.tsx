@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { LanguageSwitcher } from "@/app/components/LanguageSwitcher";
 import type { Dictionary, Lang } from "@/app/lib/dictionaries";
 
 type NavDict = Dictionary["nav"];
@@ -50,7 +49,7 @@ export function Header({ dict, lang }: Props) {
 
   const rightNav = [
     { label: dict.cv, href: `/${lang}#cv`, isCv: true, isExternal: false },
-    { label: dict.shop, href: "https://store.carlotasoto.com", isCv: false, isExternal: true }
+    { label: dict.shop, href: "https://store.carlotasoto.com", isCv: false, isExternal: false }
   ];
 
   useEffect(() => {
@@ -118,15 +117,25 @@ export function Header({ dict, lang }: Props) {
       }
       lastY.current = y;
     };
+    // Sync initial state — handles refreshes / anchor loads where y > 0 on mount.
+    // We only sync `scrolled`; we don't apply the hide-on-going-down logic on
+    // first paint since the user hasn't actually scrolled yet.
+    const initialY = window.scrollY;
+    setScrolled(initialY > 20);
+    lastY.current = initialY;
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, [mobileOpen]);
 
   const dropdownOpen = hoverGallery || (isMobile && mobileGalleryOpen);
+  // Couple the bg overlay to visibility: when the header is hidden, also drop
+  // --bg so the overlay fades out alongside the slide-up. On scroll-back-up,
+  // both the transform and the overlay animate back in together.
+  const showBg = !hidden && (scrolled || dropdownOpen || mobileOpen);
 
   return (
     <header
-      className={`site-header ${scrolled || dropdownOpen || mobileOpen ? "site-header--bg" : ""} ${
+      className={`site-header ${showBg ? "site-header--bg" : ""} ${
         hidden ? "site-header--hidden" : ""
       }`}
       data-dropdown={dropdownOpen ? "open" : "closed"}
@@ -226,9 +235,6 @@ export function Header({ dict, lang }: Props) {
               </a>
             </div>
           ))}
-          <div className="nav-item">
-            <LanguageSwitcher lang={lang} />
-          </div>
         </div>
       </nav>
       {cvPopupOpen && (

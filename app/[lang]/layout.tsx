@@ -5,21 +5,23 @@ import { Footer } from "@/app/components/Footer";
 
 type Props = {
   children: React.ReactNode;
-  params: { lang: Lang };
+  params: Promise<{ lang: string }>;
 };
 
 export function generateStaticParams() {
   return langs.map((lang) => ({ lang }));
 }
 
-export default function LangLayout({ children, params: { lang } }: Props) {
+export default async function LangLayout({ children, params }: Props) {
+  const { lang: langParam } = await params;
+  const lang = langParam as Lang;
   const dict = getDictionary(lang);
 
   return (
     <>
       <Header dict={dict.nav} lang={lang} />
       {children}
-      <Footer />
+      <Footer lang={lang} />
     </>
   );
 }

@@ -4,13 +4,15 @@ import type { Lang } from "@/app/lib/dictionaries";
 import { allWorks } from "@/app/data/artworks";
 import { SearchableGallery } from "@/app/components/SearchableGallery";
 
-type Props = { params: { lang: Lang } };
+type Props = { params: Promise<{ lang: string }> };
 
 export function generateStaticParams() {
   return langs.map((lang) => ({ lang }));
 }
 
-export async function generateMetadata({ params: { lang } }: Props): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { lang: langParam } = await params;
+  const lang = langParam as Lang;
   const dict = getDictionary(lang);
   const title = dict.gallery.heading;
   const description = dict.gallery.kicker;
@@ -29,7 +31,9 @@ export async function generateMetadata({ params: { lang } }: Props): Promise<Met
   };
 }
 
-export default function GalleryIndex({ params: { lang } }: Props) {
+export default async function GalleryIndex({ params }: Props) {
+  const { lang: langParam } = await params;
+  const lang = langParam as Lang;
   const dict = getDictionary(lang);
   const g = dict.gallery;
 

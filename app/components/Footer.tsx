@@ -3,6 +3,8 @@
 
 import type { MouseEvent } from "react";
 import { CONTACT_EMAIL, CONTACT_EMAIL_MAILTO } from "../lib/constants";
+import { LanguageSwitcher } from "@/app/components/LanguageSwitcher";
+import type { Lang } from "@/app/lib/dictionaries";
 
 const INSTAGRAM_WEB_URL = "https://www.instagram.com/carlotasotom/";
 const INSTAGRAM_DEEP_LINK = "instagram://user?username=carlotasotom";
@@ -35,7 +37,9 @@ const handleDeeplinkClick =
     window.location.href = deeplink;
   };
 
-export function Footer() {
+type FooterProps = { lang: Lang };
+
+export function Footer({ lang }: FooterProps) {
   const year = new Date().getFullYear();
 
   return (
@@ -72,6 +76,8 @@ export function Footer() {
           </svg>
           <span className="sr-only">TikTok</span>
         </a>
+        <span className="footer-divider">·</span>
+        <LanguageSwitcher lang={lang} />
       </div>
     </footer>
   );
