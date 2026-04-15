@@ -15,7 +15,7 @@ export function AboutSection({ dict, lang }: Props) {
         </div>
         <div
           className="about-visual"
-          style={{ backgroundImage: "url('/assets/images/aboutmepfp.png')" }}
+          style={{ backgroundImage: "url('/assets/images/aboutmepfp2.jpg')" }}
           aria-label="About illustration placeholder"
           role="img"
         />
