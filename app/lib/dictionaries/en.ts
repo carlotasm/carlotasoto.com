@@ -1,29 +1,31 @@
 export const en = {
   nav: {
     gallery: "Gallery",
-    illustrations: "Illustrations",
-    digitalArt: "Digital art",
-    paintings: "Paintings",
+    collections: "Archives",
     sketches: "Sketches",
-    contact: "Contact",
+    about: "About",
+    contact: "Inquiries",
     cv: "CV",
-    shop: "Shop",
-    cvPopup: "Not available yet."
+    shop: "Shop"
   },
   hero: {
     title: "PORTFOLIO",
     painter: "Painter",
     digitalIllustrator: "Digital illustrator"
   },
+  cv: {
+    heading: "CV",
+    body: "Not available yet."
+  },
   about: {
     heading: "About the artist",
-    bio: "Hello! My name is Carlota and I am an 18-year-old artist who loves nature, horror, and fashion. My works are strongly inspired by my dreams and some of my personal experiences. I meditate often, so I frequently reference my meditations and some of my philosophies. Through different mediums such as painting, traditional illustration, and digital illustration, I explore the creation of different characters and images blending the horrific with peace and beauty.",
+    bio: "Carlota Soto is a Mexican-Quebecois painter based in Montreal and the South Shore. She works primarily in acrylic, drawing inspiration from the movement of the body as well as the diverse forms found in nature. The motifs in her paintings are highly varied, bringing out duality and contrast. Her surreal and expressive world is shaped by her love of fashion, subtle horror, and her nostalgic photographs. Her caricatural vision of the world is represented in her work through her characters with long, slender faces, often in exaggerated proportions.",
     viewArt: "View art"
   },
   contact: {
-    kicker: "Contact",
-    heading: "Let\u2019s collaborate",
-    copy: "Commissions, exhibitions, residencies, collaborations \u2014 email {email} or DM @carlota.soto.",
+    kicker: "Inquiries",
+    heading: "Artwork Inquiries",
+    copy: "Interested in acquiring an original piece? Fill out the form below and Carlota will get back to you personally.",
     email: "Email",
     downloadCV: "Download CV"
   },
@@ -34,9 +36,7 @@ export const en = {
     allWorkKicker: "Search by title or medium; all categories together.",
     searchPlaceholder: "Search artworks (e.g., painting, digital, title)",
     pieces: "pieces",
-    illustrations: { heading: "Illustrations", kicker: "Selected ink and mixed-media works" },
-    digitalArt: { heading: "Digital art", kicker: "Narrative digital pieces" },
-    paintings: { heading: "Paintings", kicker: "Canvas works and colour studies" },
+    collections: { heading: "Archives", kicker: "Bodies of work, grouped" },
     sketches: { heading: "Sketches", kicker: "Process drawings and rough studies" }
   },
   shop: {

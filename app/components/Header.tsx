@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import type { Dictionary, Lang } from "@/app/lib/dictionaries";
 
 type NavDict = Dictionary["nav"];
@@ -11,17 +12,13 @@ type Props = {
 };
 
 export function Header({ dict, lang }: Props) {
-  const [cvPopupOpen, setCvPopupOpen] = useState(false);
+  const pathname = usePathname();
+  const isActive = (href: string) => {
+    const path = href.split("#")[0];
+    if (!path.startsWith(`/${lang}`)) return false;
+    return pathname === path || pathname.startsWith(`${path}/`);
+  };
   const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    document.documentElement.style.overflow = cvPopupOpen ? "hidden" : "";
-    document.body.style.overflow = cvPopupOpen ? "hidden" : "";
-    return () => {
-      document.documentElement.style.overflow = "";
-      document.body.style.overflow = "";
-    };
-  }, [cvPopupOpen]);
   const [hidden, setHidden] = useState(false);
   const [hoverGallery, setHoverGallery] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -38,18 +35,17 @@ export function Header({ dict, lang }: Props) {
       label: dict.gallery,
       href: `/${lang}/gallery`,
       children: [
-        { label: dict.illustrations, href: `/${lang}/gallery/illustrations` },
-        { label: dict.digitalArt, href: `/${lang}/gallery/digital-art` },
-        { label: dict.paintings, href: `/${lang}/gallery/paintings` },
+        { label: dict.collections, href: `/${lang}/gallery/archives` },
         { label: dict.sketches, href: `/${lang}/gallery/sketches` }
       ]
     },
-    { label: dict.contact, href: `/${lang}#contact` }
+    { label: dict.about, href: `/${lang}/about` },
+    { label: dict.contact, href: `/${lang}/inquiries` }
   ];
 
   const rightNav = [
-    { label: dict.cv, href: `/${lang}#cv`, isCv: true, isExternal: false },
-    { label: dict.shop, href: "https://store.carlotasoto.com", isCv: false, isExternal: false }
+    { label: dict.cv, href: `/${lang}/cv`, isExternal: false },
+    { label: dict.shop, href: "https://store.carlotasoto.com", isExternal: false }
   ];
 
   useEffect(() => {
@@ -162,93 +158,82 @@ export function Header({ dict, lang }: Props) {
           )}
         </button>
 
-        <div className="nav-group">
-          {leftNav.map((item) =>
-            item.children ? (
-              <div
-                className={`nav-item has-dropdown ${
-                  isMobile && mobileGalleryOpen ? "is-mobile-open" : ""
-                }`}
-                key={item.label}
-                onMouseEnter={() => item.label === dict.gallery && setDropdownOpen(true)}
-                onMouseLeave={() => item.label === dict.gallery && setDropdownOpen(false)}
-              >
-                <a
-                  href={item.href}
-                  onClick={(e) => {
-                    if (item.children && isMobile) {
-                      const now = performance.now();
-                      const delta = now - lastGalleryTap.current;
-                      lastGalleryTap.current = now;
-                      if (delta < DOUBLE_TAP_MS) {
-                        e.preventDefault();
-                        handleNavClick();
-                        window.location.href = item.href;
-                        return;
-                      }
-                      e.preventDefault();
-                      toggleMobileGallery();
-                    } else {
-                      handleNavClick();
-                    }
-                  }}
-                >
-                  {item.label}
-                </a>
+        <a href={`/${lang}`} className="nav-logo" aria-label="Home">
+          Carlota Soto
+        </a>
+
+        <div className="nav-items">
+          <div className="nav-group">
+            {leftNav.map((item) =>
+              item.children ? (
                 <div
-                  className="nav-dropdown"
+                  className={`nav-item has-dropdown ${
+                    isMobile && mobileGalleryOpen ? "is-mobile-open" : ""
+                  } ${isActive(item.href) ? "is-active" : ""}`}
+                  key={item.label}
                   onMouseEnter={() => item.label === dict.gallery && setDropdownOpen(true)}
                   onMouseLeave={() => item.label === dict.gallery && setDropdownOpen(false)}
                 >
-                  {item.children.map((child) => (
-                    <a key={child.label} href={child.href} onClick={handleNavClick}>
-                      {child.label}
-                    </a>
-                  ))}
+                  <a
+                    href={item.href}
+                    onClick={(e) => {
+                      if (item.children && isMobile) {
+                        const now = performance.now();
+                        const delta = now - lastGalleryTap.current;
+                        lastGalleryTap.current = now;
+                        if (delta < DOUBLE_TAP_MS) {
+                          e.preventDefault();
+                          handleNavClick();
+                          window.location.href = item.href;
+                          return;
+                        }
+                        e.preventDefault();
+                        toggleMobileGallery();
+                      } else {
+                        handleNavClick();
+                      }
+                    }}
+                  >
+                    {item.label}
+                  </a>
+                  <div
+                    className="nav-dropdown"
+                    onMouseEnter={() => item.label === dict.gallery && setDropdownOpen(true)}
+                    onMouseLeave={() => item.label === dict.gallery && setDropdownOpen(false)}
+                  >
+                    {item.children.map((child) => (
+                      <a key={child.label} href={child.href} onClick={handleNavClick}>
+                        {child.label}
+                      </a>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ) : (
-              <div className="nav-item" key={item.label}>
-                <a href={item.href} onClick={handleNavClick}>
+              ) : (
+                <div className={`nav-item ${isActive(item.href) ? "is-active" : ""}`} key={item.label}>
+                  <a href={item.href} onClick={handleNavClick}>
+                    {item.label}
+                  </a>
+                </div>
+              )
+            )}
+          </div>
+
+          <div className="nav-group">
+            {rightNav.map((item) => (
+              <div className={`nav-item ${isActive(item.href) ? "is-active" : ""}`} key={item.label}>
+                <a
+                  href={item.href}
+                  target={item.isExternal ? "_blank" : undefined}
+                  rel={item.isExternal ? "noreferrer" : undefined}
+                  onClick={handleNavClick}
+                >
                   {item.label}
                 </a>
               </div>
-            )
-          )}
-        </div>
-
-        <a href={`/${lang}`} className="nav-logo" aria-label="Home">
-          <img src="/assets/images/logo_carlotasoto.png" alt="Carlota Soto logo" />
-        </a>
-
-        <div className="nav-group">
-          {rightNav.map((item) => (
-            <div className="nav-item" key={item.label}>
-              <a
-                href={item.isCv ? undefined : item.href}
-                target={item.isExternal ? "_blank" : undefined}
-                rel={item.isExternal ? "noreferrer" : undefined}
-                onClick={item.isCv ? (e) => { e.preventDefault(); setCvPopupOpen(true); } : handleNavClick}
-                style={item.isCv ? { cursor: "pointer" } : undefined}
-              >
-                {item.label}
-              </a>
-            </div>
-          ))}
-        </div>
-      </nav>
-      {cvPopupOpen && (
-        <div className="cv-overlay" onClick={() => setCvPopupOpen(false)}>
-          <div className="cv-popup-wrapper" onClick={(e) => e.stopPropagation()}>
-            <button className="cv-popup__close" onClick={() => setCvPopupOpen(false)}>
-              ✕
-            </button>
-            <div className="cv-popup">
-              <p className="cv-popup__message">{dict.cvPopup}</p>
-            </div>
+            ))}
           </div>
         </div>
-      )}
+      </nav>
     </header>
   );
 }

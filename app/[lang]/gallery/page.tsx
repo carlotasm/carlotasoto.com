@@ -39,7 +39,7 @@ export default async function GalleryIndex({ params }: Props) {
 
   return (
     <main className="with-header-offset">
-      <section className="section panel" id="gallery">
+      <section className="section" id="gallery">
         <div className="section-header">
           <h2 className="section-title">{g.heading}</h2>
           <p className="section-kicker">{g.kicker}</p>

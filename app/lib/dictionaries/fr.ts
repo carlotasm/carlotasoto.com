@@ -3,29 +3,31 @@ import type { Dictionary } from "./en";
 export const fr: Dictionary = {
   nav: {
     gallery: "Galerie",
-    illustrations: "Illustrations",
-    digitalArt: "Art num\u00e9rique",
-    paintings: "Peintures",
+    collections: "Archives",
     sketches: "Croquis",
-    contact: "Contact",
+    about: "À propos",
+    contact: "Demandes",
     cv: "CV",
-    shop: "Boutique",
-    cvPopup: "Pas encore disponible."
+    shop: "Boutique"
   },
   hero: {
     title: "PORTFOLIO",
     painter: "Peintre",
     digitalIllustrator: "Illustratrice num\u00e9rique"
   },
+  cv: {
+    heading: "CV",
+    body: "Pas encore disponible."
+  },
   about: {
     heading: "\u00c0 propos de l\u2019artiste",
-    bio: "Bonjour\u00a0! Mon nom est Carlota et je suis une artiste de 18 ans qui adore la nature, l\u2019horreur et la mode. Mes \u0153uvres sont fortement inspir\u00e9es par mes r\u00eaves et certaines de mes exp\u00e9riences personnelles. Je m\u00e9dite souvent, alors je fais souvent r\u00e9f\u00e9rence \u00e0 mes m\u00e9ditations et \u00e0 certaines de mes philosophies. \u00c0 travers diff\u00e9rents m\u00e9diums tels que la peinture, l\u2019illustration traditionnelle et l\u2019illustration digitale, j\u2019explore la cr\u00e9ation de diff\u00e9rents personnages et images m\u00e9langeant l\u2019horrifique avec la paix et la beaut\u00e9.",
+    bio: "Carlota Soto est une artiste peintre mexico-qu\u00e9b\u00e9coise bas\u00e9e \u00e0 Montr\u00e9al et sur la Rive-Sud. Elle travaille principalement \u00e0 l\u2019acrylique s\u2019inspirant du mouvement du corps ainsi que des formes diverses qui se trouvent en nature. Les motifs sont tr\u00e8s divers dans ses peintures, faisant ressortir la dualit\u00e9 et le contraste. Son univers surr\u00e9aliste et expressif est forg\u00e9 par son amour pour la mode, l\u2019horreur subtile ainsi que ses photographies nostalgiques. Sa vision caricaturale du monde est repr\u00e9sent\u00e9e dans son travail par ses personnages \u00e0 la figure longue et fine, souvent aux proportions exag\u00e9r\u00e9es.",
     viewArt: "Voir les \u0153uvres"
   },
   contact: {
-    kicker: "Contact",
-    heading: "Collaborons",
-    copy: "Commandes, expositions, r\u00e9sidences, collaborations \u2014 \u00e9crivez \u00e0 {email} ou en DM @carlota.soto.",
+    kicker: "Demandes",
+    heading: "Demandes d\u2019\u0153uvres",
+    copy: "Vous souhaitez acqu\u00e9rir une \u0153uvre originale ? Remplissez le formulaire ci-dessous et Carlota vous r\u00e9pondra personnellement.",
     email: "Envoyer un e-mail",
     downloadCV: "T\u00e9l\u00e9charger le CV"
   },
@@ -36,9 +38,7 @@ export const fr: Dictionary = {
     allWorkKicker: "Recherche par titre ou m\u00e9dium\u00a0; toutes cat\u00e9gories confondues.",
     searchPlaceholder: "Rechercher (ex\u00a0: peinture, num\u00e9rique, titre)",
     pieces: "pi\u00e8ces",
-    illustrations: { heading: "Illustrations", kicker: "Encres et \u0153uvres mixtes s\u00e9lectionn\u00e9es" },
-    digitalArt: { heading: "Art num\u00e9rique", kicker: "Pi\u00e8ces num\u00e9riques narratives" },
-    paintings: { heading: "Peintures", kicker: "\u0152uvres sur toile et \u00e9tudes de couleurs" },
+    collections: { heading: "Archives", kicker: "Ensembles d\u2019\u0153uvres, regroup\u00e9s" },
     sketches: { heading: "Croquis", kicker: "Dessins de processus et \u00e9tudes pr\u00e9paratoires" }
   },
   shop: {

@@ -6,8 +6,6 @@ import {
   Caveat
 } from "next/font/google";
 import "./globals.css";
-import "lightgallery/css/lightgallery.css";
-import "lightgallery/css/lg-zoom.css";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],

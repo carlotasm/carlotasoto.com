@@ -21,8 +21,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical: `https://carlotasoto.com/${lang}/gallery/sketches`,
       languages: {
-        "en": "https://carlotasoto.com/en/gallery/sketches",
-        "fr": "https://carlotasoto.com/fr/gallery/sketches"
+        en: "https://carlotasoto.com/en/gallery/sketches",
+        fr: "https://carlotasoto.com/fr/gallery/sketches"
       }
     },
     openGraph: { title, description, url: `https://carlotasoto.com/${lang}/gallery/sketches` },
@@ -38,7 +38,7 @@ export default async function SketchesPage({ params }: Props) {
 
   return (
     <main className="with-header-offset">
-      <section className="section panel">
+      <section className="section">
         <div className="section-header">
           <h2 className="section-title">{g.heading}</h2>
           <p className="section-kicker">{g.kicker}</p>

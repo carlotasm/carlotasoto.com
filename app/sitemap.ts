@@ -1,14 +1,16 @@
 import type { MetadataRoute } from "next";
 import { langs } from "@/app/lib/dictionaries";
 import { SITE_URL } from "@/app/lib/constants";
+import { collections } from "@/app/data/artworks";
 
 const routes = [
   "",
   "/gallery",
-  "/gallery/illustrations",
-  "/gallery/digital-art",
-  "/gallery/paintings",
-  "/gallery/sketches"
+  "/gallery/archives",
+  ...collections.map((collection) => `/gallery/archives/${collection.slug}`),
+  "/gallery/sketches",
+  "/cv",
+  "/inquiries"
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { getDictionary, langs } from "@/app/lib/dictionaries";
 import type { Lang } from "@/app/lib/dictionaries";
-import { HeroSection } from "@/app/sections/HeroSection";
-import { AboutSection } from "@/app/sections/AboutSection";
-import { CONTACT_EMAIL } from "@/app/lib/constants";
+import { SearchableGallery } from "@/app/components/SearchableGallery";
+import { allWorks } from "@/app/data/artworks";
 
 type Props = { params: Promise<{ lang: string }> };
 
@@ -44,21 +43,14 @@ export default async function Home({ params }: Props) {
   const dict = getDictionary(lang);
 
   return (
-    <div className="homepage">
-      <HeroSection dict={dict.hero} />
-      <main className="panel">
-        <AboutSection dict={dict.about} lang={lang} />
-        <section className="section contact" id="contact">
-          <div className="contact-card">
-            <div>
-              <h2 className="section-title">{dict.contact.heading}</h2>
-              <p className="contact-copy">
-                {dict.contact.copy.replace("{email}", CONTACT_EMAIL)}
-              </p>
-            </div>
-          </div>
-        </section>
-      </main>
-    </div>
+    <main className="with-header-offset">
+      <section className="section gallery" id="gallery">
+        <SearchableGallery
+          artworks={allWorks}
+          searchPlaceholder={dict.gallery.searchPlaceholder}
+          piecesLabel={dict.gallery.pieces}
+        />
+      </section>
+    </main>
   );
 }
