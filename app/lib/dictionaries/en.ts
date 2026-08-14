@@ -3,6 +3,7 @@ export const en = {
     gallery: "Gallery",
     collections: "Archives",
     sketches: "Sketches",
+    observational: "Observational drawings",
     about: "About",
     contact: "Inquiries",
     cv: "CV",
@@ -37,7 +38,12 @@ export const en = {
     searchPlaceholder: "Search artworks (e.g., painting, digital, title)",
     pieces: "pieces",
     collections: { heading: "Archives", kicker: "Bodies of work, grouped" },
-    sketches: { heading: "Sketches", kicker: "Process drawings and rough studies" }
+    sketches: { heading: "Sketches", kicker: "Process drawings and rough studies" },
+    observational: {
+      heading: "Observational drawings",
+      kicker: "Studies drawn from life — figures, still life, and places",
+      empty: "New drawings are being added — check back soon."
+    }
   },
   shop: {
     heading: "Shop",

@@ -34,10 +34,28 @@ export const sketchWorks: Artwork[] = [
   { title: "Unnamed #5", slug: "sketch-unnamed-5", medium: "Sketch", image: "/artworks/sketches/unnamed-5.jpg" }
 ];
 
+// Drawings made from life. Images live in /public/artworks/observational-drawings.
+export const observationalWorks: Artwork[] = [
+  { title: "Station Place-des-Arts", slug: "station-place-des-arts", medium: "Ink and marker on paper", image: "/artworks/observational-drawings/station-place-des-arts.jpg" },
+  { title: "Living room interior", slug: "living-room-interior", medium: "Ink on paper", image: "/artworks/observational-drawings/living-room-interior.jpg" },
+  { title: "Interior in perspective", slug: "interior-in-perspective", medium: "Ink and marker on paper", image: "/artworks/observational-drawings/interior-in-perspective.jpg" },
+  { title: "Wine glass", slug: "wine-glass", medium: "Graphite on paper", image: "/artworks/observational-drawings/wine-glass.jpg" },
+  { title: "Solids in light", slug: "solids-in-light", medium: "Graphite on paper", image: "/artworks/observational-drawings/solids-in-light.jpg" },
+  { title: "Geometric solids", slug: "geometric-solids", medium: "Graphite on paper", image: "/artworks/observational-drawings/geometric-solids.jpg" },
+  { title: "Mi perro Rocco", slug: "mi-perro-rocco", medium: "Graphite on paper", image: "/artworks/observational-drawings/mi-perro-rocco.jpg" },
+  { title: "Centaur", slug: "centaur", medium: "Graphite on paper", image: "/artworks/observational-drawings/centaur.jpg" },
+  { title: "Sofa studies", slug: "sofa-studies", medium: "Graphite and colored pencil on paper", image: "/artworks/observational-drawings/sofa-studies.jpg" },
+  { title: "Wooden armchair", slug: "wooden-armchair", medium: "Graphite on paper", image: "/artworks/observational-drawings/wooden-armchair.jpg" },
+  { title: "Chair in hatching", slug: "chair-in-hatching", medium: "Graphite on paper", image: "/artworks/observational-drawings/chair-in-hatching.jpg" },
+  { title: "Anoki's arm", slug: "anokis-arm", medium: "Graphite on paper", image: "/artworks/observational-drawings/anokis-arm.jpg" },
+  { title: "Perspective boxes", slug: "perspective-boxes", medium: "Graphite on paper", image: "/artworks/observational-drawings/perspective-boxes.jpg" }
+];
+
 export const allWorks: Artwork[] = [
   ...primaryWorks,
   ...altWorks,
-  ...sketchWorks
+  ...sketchWorks,
+  ...observationalWorks
 ];
 
 export type Collection = {

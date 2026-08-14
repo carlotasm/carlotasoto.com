@@ -36,7 +36,8 @@ export function Header({ dict, lang }: Props) {
       href: `/${lang}/gallery`,
       children: [
         { label: dict.collections, href: `/${lang}/gallery/archives` },
-        { label: dict.sketches, href: `/${lang}/gallery/sketches` }
+        { label: dict.sketches, href: `/${lang}/gallery/sketches` },
+        { label: dict.observational, href: `/${lang}/gallery/observational-drawings` }
       ]
     },
     { label: dict.about, href: `/${lang}/about` },

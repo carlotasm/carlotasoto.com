@@ -5,6 +5,7 @@ export const fr: Dictionary = {
     gallery: "Galerie",
     collections: "Archives",
     sketches: "Croquis",
+    observational: "Dessins d’observation",
     about: "À propos",
     contact: "Demandes",
     cv: "CV",
@@ -39,7 +40,12 @@ export const fr: Dictionary = {
     searchPlaceholder: "Rechercher (ex\u00a0: peinture, num\u00e9rique, titre)",
     pieces: "pi\u00e8ces",
     collections: { heading: "Archives", kicker: "Ensembles d\u2019\u0153uvres, regroup\u00e9s" },
-    sketches: { heading: "Croquis", kicker: "Dessins de processus et \u00e9tudes pr\u00e9paratoires" }
+    sketches: { heading: "Croquis", kicker: "Dessins de processus et \u00e9tudes pr\u00e9paratoires" },
+    observational: {
+      heading: "Dessins d\u2019observation",
+      kicker: "\u00c9tudes d\u2019apr\u00e8s nature \u2014 figures, natures mortes et lieux",
+      empty: "De nouveaux dessins seront ajout\u00e9s prochainement."
+    }
   },
   shop: {
     heading: "Boutique",

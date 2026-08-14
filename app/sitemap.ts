@@ -9,6 +9,7 @@ const routes = [
   "/gallery/archives",
   ...collections.map((collection) => `/gallery/archives/${collection.slug}`),
   "/gallery/sketches",
+  "/gallery/observational-drawings",
   "/cv",
   "/inquiries"
 ];
