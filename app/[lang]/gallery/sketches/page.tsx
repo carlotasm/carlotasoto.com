@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { getDictionary, langs } from "@/app/lib/dictionaries";
 import type { Lang } from "@/app/lib/dictionaries";
 import { sketchWorks } from "@/app/data/artworks";
-import { LightboxGrid } from "@/app/components/LightboxGrid";
+import { ArtStrip } from "@/app/components/ArtStrip";
+import { pageMetadata } from "@/app/lib/seo";
 
 type Props = { params: Promise<{ lang: string }> };
 
@@ -14,39 +15,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang: langParam } = await params;
   const lang = langParam as Lang;
   const dict = getDictionary(lang);
-  const { heading: title, kicker: description } = dict.gallery.sketches;
-  return {
-    title,
-    description,
-    alternates: {
-      canonical: `https://carlotasoto.com/${lang}/gallery/sketches`,
-      languages: {
-        en: "https://carlotasoto.com/en/gallery/sketches",
-        fr: "https://carlotasoto.com/fr/gallery/sketches"
-      }
-    },
-    openGraph: { title, description, url: `https://carlotasoto.com/${lang}/gallery/sketches` },
-    twitter: { title, description }
-  };
+  return pageMetadata({
+    lang,
+    path: "/gallery/sketches",
+    title: dict.gallery.sketches.heading,
+    description: dict.gallery.sketches.kicker,
+    image: sketchWorks[0]?.image
+  });
 }
 
 export default async function SketchesPage({ params }: Props) {
   const { lang: langParam } = await params;
   const lang = langParam as Lang;
   const dict = getDictionary(lang);
-  const g = dict.gallery.sketches;
-
   return (
-    <main className="with-header-offset">
-      <section className="section">
-        <div className="section-header">
-          <h2 className="section-title">{g.heading}</h2>
-          <p className="section-kicker">{g.kicker}</p>
-        </div>
-        <div className="gallery-board">
-          <LightboxGrid artworks={sketchWorks} />
-        </div>
-      </section>
+    <main className="gallery-stage">
+      <ArtStrip
+        artworks={sketchWorks}
+        nextLabel={dict.hero.next}
+        prevLabel={dict.hero.prev}
+      />
     </main>
   );
 }

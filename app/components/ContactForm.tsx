@@ -114,7 +114,7 @@ export function ContactForm({ lang }: { lang: string }) {
           name="message"
           className="contact-form__textarea"
           placeholder={isFR ? "Questions, budget, délai…" : "Questions, budget, timeline…"}
-          rows={5}
+          rows={3}
           required
         />
       </div>

@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { getDictionary, langs } from "@/app/lib/dictionaries";
 import type { Lang } from "@/app/lib/dictionaries";
 import { allWorks } from "@/app/data/artworks";
-import { SearchableGallery } from "@/app/components/SearchableGallery";
+import { ArtStrip } from "@/app/components/ArtStrip";
+import { pageMetadata } from "@/app/lib/seo";
 
 type Props = { params: Promise<{ lang: string }> };
 
@@ -14,42 +15,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang: langParam } = await params;
   const lang = langParam as Lang;
   const dict = getDictionary(lang);
-  const title = dict.gallery.heading;
-  const description = dict.gallery.kicker;
-  return {
-    title,
-    description,
-    alternates: {
-      canonical: `https://carlotasoto.com/${lang}/gallery`,
-      languages: {
-        "en": "https://carlotasoto.com/en/gallery",
-        "fr": "https://carlotasoto.com/fr/gallery"
-      }
-    },
-    openGraph: { title, description, url: `https://carlotasoto.com/${lang}/gallery` },
-    twitter: { title, description }
-  };
+  return pageMetadata({
+    lang,
+    path: "/gallery",
+    title: dict.gallery.heading,
+    description: dict.gallery.kicker,
+    image: allWorks[0]?.image
+  });
 }
 
 export default async function GalleryIndex({ params }: Props) {
   const { lang: langParam } = await params;
   const lang = langParam as Lang;
   const dict = getDictionary(lang);
-  const g = dict.gallery;
-
   return (
-    <main className="with-header-offset">
-      <section className="section" id="gallery">
-        <div className="section-header">
-          <h2 className="section-title">{g.heading}</h2>
-          <p className="section-kicker">{g.kicker}</p>
-        </div>
-        <SearchableGallery
-          artworks={allWorks}
-          searchPlaceholder={g.searchPlaceholder}
-          piecesLabel={g.pieces}
-        />
-      </section>
+    <main className="gallery-stage">
+      <ArtStrip
+        artworks={allWorks}
+        nextLabel={dict.hero.next}
+        prevLabel={dict.hero.prev}
+      />
     </main>
   );
 }

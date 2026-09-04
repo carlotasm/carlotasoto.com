@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { getDictionary, langs } from "@/app/lib/dictionaries";
 import type { Lang } from "@/app/lib/dictionaries";
 import { observationalWorks } from "@/app/data/artworks";
-import { LightboxGrid } from "@/app/components/LightboxGrid";
+import { ArtStrip } from "@/app/components/ArtStrip";
+import { pageMetadata } from "@/app/lib/seo";
 
 type Props = { params: Promise<{ lang: string }> };
 
@@ -14,24 +15,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { lang: langParam } = await params;
   const lang = langParam as Lang;
   const dict = getDictionary(lang);
-  const { heading: title, kicker: description } = dict.gallery.observational;
-  return {
-    title,
-    description,
-    alternates: {
-      canonical: `https://carlotasoto.com/${lang}/gallery/observational-drawings`,
-      languages: {
-        en: "https://carlotasoto.com/en/gallery/observational-drawings",
-        fr: "https://carlotasoto.com/fr/gallery/observational-drawings"
-      }
-    },
-    openGraph: {
-      title,
-      description,
-      url: `https://carlotasoto.com/${lang}/gallery/observational-drawings`
-    },
-    twitter: { title, description }
-  };
+  return pageMetadata({
+    lang,
+    path: "/gallery/observational-drawings",
+    title: dict.gallery.observational.heading,
+    description: dict.gallery.observational.kicker,
+    image: observationalWorks[0]?.image
+  });
 }
 
 export default async function ObservationalDrawingsPage({ params }: Props) {
@@ -41,20 +31,13 @@ export default async function ObservationalDrawingsPage({ params }: Props) {
   const g = dict.gallery.observational;
 
   return (
-    <main className="with-header-offset">
-      <section className="section">
-        <div className="section-header">
-          <h2 className="section-title">{g.heading}</h2>
-          <p className="section-kicker">{g.kicker}</p>
-        </div>
-        {observationalWorks.length > 0 ? (
-          <div className="gallery-board">
-            <LightboxGrid artworks={observationalWorks} />
-          </div>
-        ) : (
-          <p className="section-kicker align-center">{g.empty}</p>
-        )}
-      </section>
+    <main className="gallery-stage">
+      <ArtStrip
+        artworks={observationalWorks}
+        emptyMessage={g.empty}
+        nextLabel={dict.hero.next}
+        prevLabel={dict.hero.prev}
+      />
     </main>
   );
 }

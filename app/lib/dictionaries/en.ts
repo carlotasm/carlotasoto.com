@@ -6,36 +6,33 @@ export const en = {
     observational: "Observational drawings",
     about: "About",
     contact: "Inquiries",
-    cv: "CV",
     shop: "Shop"
   },
   hero: {
-    title: "PORTFOLIO",
-    painter: "Painter",
-    digitalIllustrator: "Digital illustrator"
+    next: "Next artwork",
+    prev: "Previous artwork",
+    view: "View artwork",
+    categories: {
+      paintings: "Paintings",
+      digitalArt: "Digital art",
+      illustrations: "Illustrations"
+    }
   },
-  cv: {
-    heading: "CV",
-    body: "Not available yet."
+  notFound: {
+    title: "404 - Nothing here, for now...",
+    back: "Back to home"
   },
   about: {
     heading: "About the artist",
-    bio: "Carlota Soto is a Mexican-Quebecois painter based in Montreal and the South Shore. She works primarily in acrylic, drawing inspiration from the movement of the body as well as the diverse forms found in nature. The motifs in her paintings are highly varied, bringing out duality and contrast. Her surreal and expressive world is shaped by her love of fashion, subtle horror, and her nostalgic photographs. Her caricatural vision of the world is represented in her work through her characters with long, slender faces, often in exaggerated proportions.",
-    viewArt: "View art"
+    bio: "Carlota Soto is a Mexican-Quebecois painter based in Montreal and the South Shore. She works primarily in acrylic, drawing inspiration from the movement of the body as well as the diverse forms found in nature. The motifs in her paintings are highly varied, bringing out duality and contrast. Her surreal and expressive world is shaped by her love of fashion, subtle horror, and her nostalgic photographs. Her caricatural vision of the world is represented in her work through her characters with long, slender faces, often in exaggerated proportions."
   },
   contact: {
-    kicker: "Inquiries",
     heading: "Artwork Inquiries",
-    copy: "Interested in acquiring an original piece? Fill out the form below and Carlota will get back to you personally.",
-    email: "Email",
-    downloadCV: "Download CV"
+    copy: "Interested in acquiring an original piece? Fill out the form below and Carlota will get back to you personally."
   },
   gallery: {
     heading: "Gallery",
-    kicker: "All works \u2014 search by title or medium.",
-    allWorkHeading: "All work",
-    allWorkKicker: "Search by title or medium; all categories together.",
-    searchPlaceholder: "Search artworks (e.g., painting, digital, title)",
+    kicker: "All works \u2014 paintings, illustrations, sketches, and drawings.",
     pieces: "pieces",
     collections: { heading: "Archives", kicker: "Bodies of work, grouped" },
     sketches: { heading: "Sketches", kicker: "Process drawings and rough studies" },
